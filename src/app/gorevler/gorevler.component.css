@@ -1,0 +1,630 @@
+.gorevler-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #f8fafc;
+  min-height: calc(100vh - 200px);
+}
+
+.main-grid {
+  display: flex;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.form-section {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+}
+
+.form-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  position: sticky;
+  top: 1rem;
+}
+
+.form-header {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.form-header h2 {
+  color: #1e293b;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-header h2 i {
+  margin-right: 0.5rem;
+  color: #3b82f6;
+}
+
+.form-header p {
+  color: #64748b;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Form */
+.gorev-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: #374151;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-group label i {
+  color: #3b82f6;
+  width: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  background: white;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+/* Butonlar */
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 120px;
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+  flex: 1;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.btn-primary:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover {
+  background: #f1f5f9;
+  border-color: #9ca3af;
+}
+
+.list-section {
+  flex: 2;
+}
+
+.list-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.list-header h1 {
+  color: #1e293b;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.list-header h1 i {
+  color: #3b82f6;
+}
+
+.list-stats {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.total-count,
+.completed-count {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  background: #f1f5f9;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.kategori-filtre {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.kategori-btn {
+  padding: 0.5rem 1rem;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #475569;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.kategori-btn:hover {
+  background: #e2e8f0;
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.kategori-btn.active {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+}
+
+.kategori-btn i {
+  margin-right: 0.25rem;
+}
+
+/* Görev Listesi */
+.gorevler-listesi {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.gorevler-listesi::-webkit-scrollbar {
+  width: 6px;
+}
+
+.gorevler-listesi::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.gorevler-listesi::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.gorevler-listesi::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.gorev-card {
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+  border-left: 4px solid #3b82f6;
+}
+
+.gorev-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.gorev-card.completed {
+  background: #f0f9ff;
+  border-left-color: #10b981;
+  opacity: 0.8;
+}
+
+.gorev-card.completed .gorev-title {
+  text-decoration: line-through;
+  color: #6b7280;
+}
+
+.gorev-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gorev-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.gorev-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.gorev-status {
+  flex-shrink: 0;
+}
+
+.kategori-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.kategori-badge[data-kategori="is"] {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.kategori-badge[data-kategori="kisisel"] {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.kategori-badge[data-kategori="alısveris"] {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.kategori-badge[data-kategori="diger"] {
+  background: #e0e7ff;
+  color: #7c3aed;
+}
+
+.gorev-aciklama {
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.gorev-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.gorev-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.tarih {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+
+.gorev-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  min-width: 80px;
+}
+
+.btn-success {
+  background: #10b981;
+  color: white;
+}
+
+.btn-success:hover {
+  background: #059669;
+}
+
+.btn-warning {
+  background: #f59e0b;
+  color: white;
+}
+
+.btn-warning:hover {
+  background: #d97706;
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6b7280;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: #d1d5db;
+  margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #374151;
+}
+
+.empty-state p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Animasyonlar */
+.animate-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .form-section {
+    min-width: 280px;
+    max-width: 350px;
+  }
+
+  .list-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .gorevler-listesi {
+    max-height: 50vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .gorevler-container {
+    padding: 0.75rem;
+  }
+
+  .main-grid {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .form-section {
+    order: 2;
+    min-width: unset;
+    max-width: unset;
+  }
+
+  .list-section {
+    order: 1;
+  }
+
+  .form-card {
+    position: static;
+  }
+
+  .list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .list-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .list-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .kategori-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .form-card,
+  .list-card {
+    padding: 1rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .gorev-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .gorev-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .gorev-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .gorevler-listesi {
+    max-height: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .gorevler-container {
+    padding: 0.5rem;
+  }
+
+  .list-header h1 {
+    font-size: 1.125rem;
+  }
+
+  .kategori-filtre {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .kategori-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .form-card,
+  .list-card {
+    padding: 0.75rem;
+  }
+
+  .form-control {
+    padding: 0.625rem;
+  }
+
+  .btn {
+    padding: 0.625rem 0.75rem;
+  }
+
+  .btn-sm {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+    min-width: 60px;
+  }
+
+  .gorev-card {
+    padding: 0.75rem;
+  }
+
+  .list-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .total-count,
+  .completed-count {
+    justify-content: center;
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .gorevler-container {
+    padding: 0.25rem;
+  }
+
+  .form-card,
+  .list-card {
+    padding: 0.5rem;
+  }
+
+  .gorev-card {
+    padding: 0.5rem;
+  }
+
+  .btn-sm {
+    min-width: 50px;
+    padding: 0.25rem 0.4rem;
+  }
+}

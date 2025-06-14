@@ -1,0 +1,26 @@
+<div class="takvim-container">
+    <div class="gorunum-secenekleri">
+        <button class="gorunum-btn" [class.active]="seciliGorunum === 'gun'" (click)="gorunumDegistir('gun')">
+            Günlük
+        </button>
+        <button class="gorunum-btn" [class.active]="seciliGorunum === 'hafta'" (click)="gorunumDegistir('hafta')">
+            Haftalık
+        </button>
+    </div>
+    <div class="takvim-gunler" [attr.data-gorunum]="seciliGorunum">
+        <div class="takvim-gun" *ngFor="let gun of gunler">
+            <div class="gun-baslik">{{ getGunIsmi(gun) }}, {{ gun | date:'dd.MM.yyyy' }}</div>
+            <div class="gun-gorevler">
+                <div class="takvim-gorev" *ngFor="let gorev of gununGorevleri(gun)">
+                    <div class="gorev-title">{{ gorev.baslik }}</div>
+                    <div class="gorev-meta">
+                        <span class="gorev-saat">{{ gorev.olusturmaTarihi | date:'HH:mm' }}</span>
+                        <span class="gorev-kategori kategori-badge" [attr.data-kategori]="gorev.kategori">{{
+                            gorev.kategori }}</span>
+                    </div>
+                    <div class="gorev-aciklama" *ngIf="gorev.aciklama">{{ gorev.aciklama }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

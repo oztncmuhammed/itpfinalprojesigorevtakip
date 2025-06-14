@@ -1,0 +1,350 @@
+.takvim-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 2rem;
+}
+.takvim-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.takvim-table th,
+.takvim-table td {
+  border: 1px solid #e0e0e0;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  min-width: 120px;
+}
+.takvim-table th {
+  background: #f5f5f5;
+  font-weight: 600;
+}
+.saat-col {
+  background: #f0f4f8;
+  font-weight: 500;
+}
+.takvim-gorev {
+  background: #e3f2fd;
+  color: #1e293b;
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  margin: 0.15rem 0;
+  font-size: 0.95rem;
+  box-shadow: 0 1px 4px rgba(33, 150, 243, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+.gorev-title {
+  font-weight: 600;
+  font-size: 1rem;
+}
+.gorev-meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.85rem;
+}
+.gorev-saat {
+  color: #1976d2;
+  font-weight: 500;
+}
+.kategori-badge[data-kategori="is"] {
+  background: #e3f2fd;
+  color: #1976d2;
+  border-radius: 4px;
+  padding: 0 6px;
+}
+.kategori-badge[data-kategori="kisisel"] {
+  background: #e8f5e9;
+  color: #388e3c;
+  border-radius: 4px;
+  padding: 0 6px;
+}
+.kategori-badge[data-kategori="alisveris"] {
+  background: #fffde7;
+  color: #fbc02d;
+  border-radius: 4px;
+  padding: 0 6px;
+}
+.kategori-badge[data-kategori="diger"],
+.kategori-badge[data-kategori="genel"] {
+  background: #f3e5f5;
+  color: #8e24aa;
+  border-radius: 4px;
+  padding: 0 6px;
+}
+.gorev-aciklama {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 2px;
+}
+.takvim-gorunum-sec {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: flex-end;
+}
+.takvim-gorunum-sec button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #2196f3;
+  background: #fff;
+  color: #2196f3;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.takvim-gorunum-sec button.active,
+.takvim-gorunum-sec button:hover {
+  background: #2196f3;
+  color: #fff;
+}
+.takvim-gunler {
+  display: grid;
+  gap: 1rem;
+}
+
+.takvim-gunler[data-gorunum="ucgun"] {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.takvim-gunler[data-gorunum="hafta"] {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.takvim-gunler[data-gorunum="ay"] {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.takvim-gun {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.takvim-gunler[data-gorunum="ucgun"] .takvim-gun {
+  min-height: 300px;
+}
+
+.takvim-gunler[data-gorunum="hafta"] .takvim-gun {
+  min-height: 200px;
+}
+
+.takvim-gunler[data-gorunum="ay"] .takvim-gun {
+  min-height: 80px;
+  max-height: 90px;
+  padding: 0.35rem;
+  overflow: hidden;
+}
+
+.takvim-gunler[data-gorunum="ay"] .gun-baslik {
+  font-size: 0.75rem;
+  margin-bottom: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.takvim-gunler[data-gorunum="ay"] .gun-gorevler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.takvim-gunler[data-gorunum="ay"] .takvim-gorev {
+  padding: 0.15rem;
+  margin: 0;
+  background: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.takvim-gunler[data-gorunum="ay"] .gorev-title,
+.takvim-gunler[data-gorunum="ay"] .gorev-meta,
+.takvim-gunler[data-gorunum="ay"] .gorev-aciklama {
+  display: none;
+}
+
+.takvim-gunler[data-gorunum="ay"] .takvim-gorev::before {
+  content: "•";
+  font-size: 1.2rem;
+  line-height: 1;
+  color: #3b82f6;
+}
+
+.takvim-gunler[data-gorunum="ay"] .takvim-gorev[data-kategori="is"]::before {
+  color: #dc2626;
+}
+
+.takvim-gunler[data-gorunum="ay"]
+  .takvim-gorev[data-kategori="kisisel"]::before {
+  color: #16a34a;
+}
+
+.takvim-gunler[data-gorunum="ay"]
+  .takvim-gorev[data-kategori="alisveris"]::before {
+  color: #d97706;
+}
+
+.takvim-gunler[data-gorunum="ay"] .takvim-gorev[data-kategori="diger"]::before {
+  color: #7c3aed;
+}
+
+.takvim-gunler[data-gorunum="ay"] {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 1200px) {
+  .takvim-gunler[data-gorunum="hafta"] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .takvim-gunler[data-gorunum="ay"] {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .takvim-gunler[data-gorunum="ucgun"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .takvim-gunler[data-gorunum="hafta"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .takvim-gunler[data-gorunum="ay"] {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .takvim-gunler[data-gorunum="ucgun"],
+  .takvim-gunler[data-gorunum="hafta"],
+  .takvim-gunler[data-gorunum="ay"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .takvim-gunler[data-gorunum="ay"] .takvim-gun {
+    min-height: 70px;
+    max-height: 80px;
+    padding: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .takvim-gunler[data-gorunum="ucgun"],
+  .takvim-gunler[data-gorunum="hafta"],
+  .takvim-gunler[data-gorunum="ay"] {
+    grid-template-columns: 1fr;
+  }
+
+  .takvim-gun {
+    min-height: 180px !important;
+  }
+
+  .takvim-gunler[data-gorunum="ay"] .takvim-gun {
+    min-height: 60px;
+    max-height: 70px;
+    padding: 0.2rem;
+  }
+
+  .takvim-gunler[data-gorunum="ay"] .gun-baslik {
+    font-size: 0.7rem;
+    margin-bottom: 0.15rem;
+    padding-bottom: 0.15rem;
+  }
+
+  .takvim-gunler[data-gorunum="ay"] .gorev-title {
+    font-size: 0.7rem;
+  }
+}
+
+.gorunum-secenekleri {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.gorunum-btn {
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  background: white;
+  color: #4b5563;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.gorunum-btn:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+}
+
+.gorunum-btn.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.gorunum-btn i {
+  display: none;
+}
+
+.takvim-gunler[data-gorunum="gun"] {
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.takvim-gunler[data-gorunum="gun"] .takvim-gun {
+  min-height: 300px;
+  padding: 1rem;
+}
+
+.takvim-gunler[data-gorunum="hafta"] {
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}
+
+.takvim-gunler[data-gorunum="hafta"] .takvim-gun {
+  min-height: 200px;
+  padding: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .takvim-gunler[data-gorunum="hafta"] {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.35rem;
+  }
+
+  .takvim-gunler[data-gorunum="hafta"] .takvim-gun {
+    min-height: 180px;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .takvim-gunler[data-gorunum="hafta"] {
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.25rem;
+  }
+
+  .takvim-gunler[data-gorunum="hafta"] .takvim-gun {
+    min-height: 150px;
+    padding: 0.35rem;
+  }
+}

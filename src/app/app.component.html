@@ -1,0 +1,34 @@
+<div class="app-container">
+    <ng-container *ngIf="isLoggedIn$ | async; else loginOnly">
+        <header>
+            <nav class="navbar">
+                <div class="nav-brand">Görev Takip</div>
+                <div class="nav-links centered">
+                    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="fas fa-home"></i> Ana Sayfa
+                    </a>
+                    <a routerLink="/takvim" routerLinkActive="active">
+                        <i class="fas fa-calendar-alt"></i> Takvim
+                    </a>
+                    <a routerLink="/profil" routerLinkActive="active">
+                        <i class="fas fa-user"></i> Profil
+                    </a>
+                    <a *ngIf="!isProfilSayfasi()" (click)="logout()" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Çıkış
+                    </a>
+                </div>
+            </nav>
+        </header>
+        <main class="main-content yukari-cek">
+            <router-outlet></router-outlet>
+        </main>
+    </ng-container>
+
+    <ng-template #loginOnly>
+        <main class="main-content">
+            <router-outlet></router-outlet>
+        </main>
+    </ng-template>
+
+
+</div>

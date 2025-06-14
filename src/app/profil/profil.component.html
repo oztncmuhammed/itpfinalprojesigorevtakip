@@ -1,0 +1,91 @@
+<div class="modal-backdrop" *ngIf="modalType">
+    <div class="modal">
+        <button class="modal-close" (click)="closeModal()"><i class="material-icons">close</i></button>
+        <div *ngIf="modalType === 'edit'">
+            <h2>Profili Düzenle</h2>
+            <form (ngSubmit)="kaydetProfili()">
+                <div class="form-group">
+                    <label>İsim</label>
+                    <input [(ngModel)]="editForm.isim" name="isim" required />
+                </div>
+                <div class="form-group">
+                    <label>Soyisim</label>
+                    <input [(ngModel)]="editForm.soyisim" name="soyisim" required />
+                </div>
+                <div class="form-group">
+                    <label>E-posta</label>
+                    <input [(ngModel)]="editForm.email" name="email" required type="email" />
+                </div>
+                <button type="submit" class="action-button edit-button"><i class="material-icons">save</i>
+                    Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="profil-wrapper" *ngIf="user">
+    <div class="profil-avatar-large" style="position:static; margin: 32px auto 0 auto;">
+        <span>{{ user.isim[0] }}{{ user.soyisim[0] }}</span>
+    </div>
+    <div class="profil-content">
+        <div class="profil-main-info">
+            <h1 class="profil-name">{{ user.isim }} {{ user.soyisim }}</h1>
+            <p class="profil-email">{{ user.email }}</p>
+            <div class="profil-stats">
+                <div class="stat-item">
+                    <span class="stat-value">{{ tamamlananGorev }}</span>
+                    <span class="stat-label">Tamamlanan Görev</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">{{ bekleyenGorev }}</span>
+                    <span class="stat-label">Bekleyen Görev</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">{{ toplamGorev }}</span>
+                    <span class="stat-label">Toplam Görev</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profil-details">
+            <div class="detail-card">
+                <h2>Hesap Bilgileri</h2>
+                <div class="detail-item">
+                    <i class="material-icons">person</i>
+                    <div class="detail-content">
+                        <span class="detail-label">Ad Soyad</span>
+                        <span class="detail-value">{{ user.isim }} {{ user.soyisim }}</span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="material-icons">email</i>
+                    <div class="detail-content">
+                        <span class="detail-label">E-posta</span>
+                        <span class="detail-value">{{ user.email }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <h2>Hesap İşlemleri</h2>
+                <button class="action-button edit-button" (click)="openModal('edit')">
+                    <i class="material-icons">edit</i>
+                    Profili Düzenle
+                </button>
+                <button class="action-button logout-button" (click)="logout()">
+                    <i class="material-icons">logout</i>
+                    Çıkış Yap
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="profil-empty" *ngIf="!user">
+    <div class="empty-state">
+        <i class="material-icons">account_circle</i>
+        <h2>Kullanıcı Bilgisi Bulunamadı</h2>
+        <p>Lütfen tekrar giriş yapmayı deneyin.</p>
+        <button class="action-button" routerLink="/giris">Giriş Yap</button>
+    </div>
+</div>

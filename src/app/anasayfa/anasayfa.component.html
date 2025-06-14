@@ -1,0 +1,151 @@
+<div class="gorevler-container">
+    <div class="main-grid">
+        <div class="form-section">
+            <div class="form-card">
+                <div class="form-header">
+                    <h2><i class="fas fa-plus-circle"></i> Yeni Görev Ekle</h2>
+                    <p>Günlük görevlerinizi kolayca yönetin</p>
+                </div>
+
+                <form class="gorev-form" (ngSubmit)="gorevEkle()">
+                    <div class="form-group">
+                        <label for="baslik">
+                            <i class="fas fa-edit"></i>
+                            Görev Başlığı
+                        </label>
+                        <input type="text" id="baslik" class="form-control" [(ngModel)]="yeniGorev.baslik" name="baslik"
+                            placeholder="Görev başlığını girin..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="aciklama">
+                            <i class="fas fa-align-left"></i>
+                            Açıklama
+                        </label>
+                        <textarea id="aciklama" class="form-control" [(ngModel)]="yeniGorev.aciklama" name="aciklama"
+                            placeholder="Görev açıklaması (opsiyonel)..." rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kategori">
+                            <i class="fas fa-tag"></i>
+                            Kategori
+                        </label>
+                        <select id="kategori" class="form-control" [(ngModel)]="yeniGorev.kategori" name="kategori">
+                            <option *ngFor="let kategori of kategoriler" [value]="kategori.value">
+                                {{ kategori.label }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tarihSaat">
+                            <i class="fas fa-calendar-alt"></i>
+                            Tarih & Saat
+                        </label>
+                        <input type="datetime-local" id="tarihSaat" name="tarihSaat" [(ngModel)]="yeniGorev.tarihSaat"
+                            class="form-control" step="1800" required />
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" [disabled]="!yeniGorev.baslik.trim()">
+                            Görevi Ekle
+                        </button>
+                        <button type="button" class="btn btn-secondary" (click)="formuTemizle()">
+                            Temizle
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="list-section">
+            <div class="list-card">
+                <div class="list-header">
+                    <h1><i class="fas fa-tasks"></i> Görevlerim</h1>
+                    <div class="list-stats">
+                        <div class="filter-dropdown">
+                            <button class="filter-btn" (click)="filtreMenuAcik = !filtreMenuAcik">
+                                <i class="fas fa-filter"></i>
+                                Filtrele
+                                <i class="fas fa-chevron-down" [class.rotated]="filtreMenuAcik"></i>
+                            </button>
+                            <div class="filter-menu" *ngIf="filtreMenuAcik">
+                                <button class="filter-item" [class.active]="seciliKategori === 'tumu'"
+                                    (click)="kategoriFiltrele('tumu')">
+                                    <i class="fas fa-th-list"></i>
+                                    Tümü
+                                </button>
+                                <button *ngFor="let kategori of kategoriler" class="filter-item"
+                                    [class.active]="seciliKategori === kategori.value"
+                                    (click)="kategoriFiltrele(kategori.value)">
+                                    <i [class]="kategori.icon"></i>
+                                    {{ kategori.label }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gorevler-listesi">
+                    <div *ngIf="filtrelenmisGorevler.length === 0" class="empty-state">
+                        <div class="empty-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h3>Henüz görev yok</h3>
+                        <p>Yeni bir görev ekleyerek başlayın!</p>
+                    </div>
+
+                    <div *ngFor="let gorev of filtrelenmisGorevler" class="gorev-card animate-in"
+                        [class.completed]="gorev.tamamlandi">
+                        <div class="gorev-content">
+                            <div class="gorev-header">
+                                <h3 class="gorev-title">{{ gorev.baslik }}</h3>
+                                <div class="gorev-status">
+                                    <span class="kategori-badge" [attr.data-kategori]="gorev.kategori">
+                                        <i [class]="getKategoriIcon(gorev.kategori)"></i>
+                                        {{ getKategoriLabel(gorev.kategori) }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <p *ngIf="gorev.aciklama" class="gorev-aciklama">
+                                {{ gorev.aciklama }}
+                            </p>
+
+                            <div class="gorev-footer">
+                                <div class="gorev-meta">
+                                    <span class="tarih">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        {{ gorev.olusturmaTarihi | date:'dd.MM.yyyy HH:mm' }}
+                                    </span>
+                                </div>
+
+                                <div class="gorev-actions">
+                                    <button class="btn btn-sm btn-success" (click)="gorevTamamla(gorev)"
+                                        [title]="gorev.tamamlandi ? 'Tamamlanmadı olarak işaretle' : 'Tamamlandı olarak işaretle'">
+                                        <i [class]="gorev.tamamlandi ? 'fas fa-undo' : 'fas fa-check'"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" (click)="gorev.id && gorevSil(gorev.id)"
+                                        title="Görevi sil">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                    <button *ngIf="duzenlenenGorev && duzenlenenGorev.id === gorev.id; else editBtn"
+                                        class="btn btn-sm btn-edit" (click)="gorevGuncelle()" title="Güncelle">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <ng-template #editBtn>
+                                        <button class="btn btn-sm btn-edit" (click)="gorevDuzenle(gorev)"
+                                            title="Düzenle">
+                                            <i class="fas fa-pen"></i>
+                                        </button>
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
